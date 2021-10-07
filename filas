@@ -1,0 +1,87 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
+
+int const MAXTAM = 5;
+int Frente, Tras;
+int Fila[MAXTAM];
+
+struct Filas {
+  
+  void Filaconstrutor (){
+    Frente=0;
+    Tras=-1;
+  }
+
+  bool Filavazia (){
+    if (Frente>Tras){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  bool Filacheia (){
+    if (Tras==MAXTAM-1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  bool Filaenfileirar (int valor){
+    if (Filavazia()) {
+      return false;
+    }else{
+      Tras++;
+      Fila[Tras]=valor;
+      return true;
+    }
+  }
+
+  bool Filadesenfileirar (int &valor){
+    if (Filavazia()){
+      return false;
+    }else{
+      valor=Fila[Frente];
+      Frente++;
+      return true;
+    }
+  }
+
+    bool Filaget (int &valor){
+    if (Filavazia()){
+      return false;
+    }else{
+      valor=Fila[Frente];
+      return true;
+    }
+  }
+};
+
+int main (){
+  int Valor1;
+  int Valor2;
+  Filas fila1, fila2;
+  Filas Filaconstrutor;
+
+  fila1.Filaenfileirar(4);
+  fila1.Filaenfileirar(8);
+  fila1.Filaenfileirar(3);
+  fila1.Filaenfileirar(23);
+  fila1.Filaenfileirar(1);
+  fila2.Filaenfileirar(3);
+  fila2.Filaenfileirar(5);
+  fila2.Filaenfileirar(1);
+  fila2.Filaenfileirar(2);
+  fila2.Filaenfileirar(8);
+
+  while (fila1.Filadesenfileirar (Valor1), fila2.Filadesenfileirar (Valor2)){
+  cout << "\nvalor1: " << Valor1;
+  cout << "\nvalor2: " << Valor2;
+  cout << "\nvalor3: " << Valor1 + Valor2;
+  };
+  
+  return 0;
+}
